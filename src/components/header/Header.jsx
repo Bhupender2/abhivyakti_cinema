@@ -19,7 +19,7 @@ const Header = () => {
   const location = useLocation();
 
   return (
-    <header>
+    <header className="header">
       {/* here we are using semantic tag for seo */}
       <ContentWrapper>
         <div className="logo">
