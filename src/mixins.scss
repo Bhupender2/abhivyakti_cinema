@@ -24,7 +24,7 @@
 
 @mixin xxl {
   @media only screen and (min-width: 1536px) {
-      @content;
+      @content; // @content jo bhi aap css likh rahe ho vo apply ho sake
   }
 }
 
@@ -35,3 +35,5 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+//TODO jo bhi css tag and css property bht repeat ho rahi h application uske liye aap mixins create karlp @maixin "name-anything" and then property described
