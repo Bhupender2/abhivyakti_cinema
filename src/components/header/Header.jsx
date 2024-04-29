@@ -18,8 +18,17 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  function openSearch() {
+    setShowSearch(true);
+    setMobileMenu(false);
+  }
+  function openMobileMenu() {
+    setMobileMenu(true);
+    setShowSearch(false);
+  }
+
   return (
-    <header className="header">
+    <header className={`header ${mobileMenu ? "mobileView" : ""}`}>
       {/* here we are using semantic tag for seo */}
       <ContentWrapper>
         <div className="logo">
@@ -32,6 +41,15 @@ const Header = () => {
             <HiOutlineSearch />
           </li>
         </ul>
+        {/*  MOBILE MENU  */}
+        <div className="mobileMenuItems">
+          <HiOutlineSearch />
+          {mobileMenu ? (
+            <VscChromeClose onClick={() => setMobileMenu(false)} />
+          ) : (
+            <SlMenu onClick={openMobileMenu} />
+          )}
+        </div>
       </ContentWrapper>
     </header>
   );
