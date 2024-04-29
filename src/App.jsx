@@ -22,13 +22,19 @@ function App() {
 
   console.log(url);
   useEffect(() => {
-    apiTesting();
+    fetchApiConfig();
   }, []);
 
-  const apiTesting = () => {
-    fetchDataFromApi("/movie/popular").then((res) => {
-      console.log(res);
-      dispactch(getApiConfiguration(res));
+  const fetchApiConfig = () => {
+    fetchDataFromApi("/configuration").then((res) => { //api fetch ho rahi h uska data apan dispatch karwa rahe h redux store mein baadmein jaake usse useSelector ki help se apne desired component mein use karahe h 
+      console.log(res);// yahan kaafi saara data aagya h images se related uss particular hum apne kaam ka data "url" object mein daal denge or uss url ko action mein paas kardenge
+
+      const url={
+        backdrop:res.images.secure_base_url + "original",
+        poster:res.images.secure_base_url + "original",
+        profile:res.images.secure_base_url + "original",
+      }
+      dispactch(getApiConfiguration(url)); // now we access these images on heroBanner section (as a background image which will be change on every refresh)
     });
   };
   return (

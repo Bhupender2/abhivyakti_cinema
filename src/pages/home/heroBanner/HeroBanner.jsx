@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.scss";
 import { useNavigate } from "react-router-dom";
+import useFetch from "../../../hooks/useFetch";
 
 const HeroBanner = () => {
   // on refreshing we call the api and set the background image on every refresh so we need a state(state mein jaake save hojaati h )
   const [background, setBackground] = useState("");
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
+  const { data, loading } = useFetch("/movie/upcoming");
+  useEffect(() => {
+    const bg = data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
+    setBackground(bg)
+  }, [data]); // we'll use optional chaining taaki hmaari application break na ho jab tak optional chaining h aage ka code execute nahi hoga agar vo undefined hoga wahi se value return karlega
 
   const searchQueryHandler = (event) => {
     if (event.key === "Enter" && query.length > 0) {
