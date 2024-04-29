@@ -6,7 +6,7 @@ export const homeSlice = createSlice({
     url: {},
     genres: {},
   },
-  reducers: {
+  reducers: { // redux toolkit allows reducer to directly mutate the state
     getApiConfiguration: (state, action) => {
       state.url = action.payload;
     },
@@ -21,3 +21,4 @@ export const homeSlice = createSlice({
 export const { getApiConfiguration, getGenres } = homeSlice.actions;
 
 export default homeSlice.reducer;
+ 
