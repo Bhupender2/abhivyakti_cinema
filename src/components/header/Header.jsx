@@ -16,18 +16,24 @@ const Header = () => {
   const [query, setQuery] = useState(""); // here also the serach bar same as in the desktop version ( this will be used in mobile version)
   const [showSearch, setShowSearch] = useState(""); // on click it will show the search input in the mobile version
   const navigate = useNavigate();
-  const location = useLocation();
+  const location = useLocation(); //whenever we change route it will be stored the current location in an object 
+
+  useEffect(() => {
+    window.scrollTo(0, 0);  //x and y axis
+  }, [location]);  // jab bhi page change hoga route chnage then this useEffect will run and hmara scroll starting pe aajaega phirse coz dekh agar pichle page mein humne scroll kiya toh next page mein bhi wahi se aaega jo hum nahi chahta h isliye location change hone pe hum starting pe aajaenge
 
   const controlNavbar = () => {
     console.log(window.scrollY);
     if (window.scrollY > 200) {
-      if (window.scrollY > lastScrollY) {
+      if (window.scrollY > lastScrollY && !mobileMenu) {
         setShow("hide");
       } else {
         setShow("show");
       }
-      setLastScrollY(window.scrollY);
+    } else {
+      setShow("top");
     }
+    setLastScrollY(window.scrollY);
   };
 
   useEffect(() => {
