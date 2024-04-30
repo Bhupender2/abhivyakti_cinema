@@ -10,19 +10,40 @@ import ContentWrapper from "../contentWrapper/ContentWrapper";
 import logo from "../../assets/movix-logo.svg";
 
 const Header = () => {
-  const [show, setShow] = useState("top"); // scrolling effect of the menu (top is a class in scss that we write on our own)
+  const [show, setShow] = useState("top"); // scrolling effect of the menu (top is a class in scss that we write on our own and it will change to hide and show on SCROLLING)
   const [lastScrollY, setLastScrollY] = useState(0); // with these two states we achieve the scroll effect in the header menu
   const [mobileMenu, setMobileMenu] = useState(false); // show and hide the mobile menu it also depend on the state
   const [query, setQuery] = useState(""); // here also the serach bar same as in the desktop version ( this will be used in mobile version)
   const [showSearch, setShowSearch] = useState(""); // on click it will show the search input in the mobile version
   const navigate = useNavigate();
   const location = useLocation();
+
+  const controlNavbar = () => {
+    console.log(window.scrollY);
+    if (window.scrollY > 200) {
+      if (window.scrollY > lastScrollY) {
+        setShow("hide");
+      } else {
+        setShow("show");
+      }
+      setLastScrollY(window.scrollY);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", controlNavbar);
+
+    return () => {
+      window.removeEventListener("scroll", controlNavbar);
+    };
+  }, [lastScrollY]);
+
   const searchQueryHandler = (event) => {
     if (event.key === "Enter" && query.length > 0) {
       // only on enter we have to run the search query not like ki every key pe searchQuery run karahe h
       navigate(`/search/${query}`); // searchResults page pe jaana h apne ko
       setTimeout(() => {
-        setShowSearch(false);   //jab hum dusre page mein navigate karenge toh search Bar open hi reh jaaega vo vo khuse close hojaana chahiye toh uske liye setTimeout use kiya meine
+        setShowSearch(false); //jab hum dusre page mein navigate karenge toh search Bar open hi reh jaaega vo vo khuse close hojaana chahiye toh uske liye setTimeout use kiya meine
       }, 1000);
     }
   };
@@ -35,6 +56,14 @@ const Header = () => {
     setMobileMenu(true);
     setShowSearch(false);
   }
+  function navigationHandler(type) {
+    if (type === "movie") {
+      navigate("/explore/movie");
+    } else {
+      navigate("/explore/tv");
+    }
+    setMobileMenu(false);
+  }
 
   return (
     <header className={`header ${mobileMenu ? "mobileView" : ""} ${show}`}>
@@ -44,10 +73,14 @@ const Header = () => {
           <img src={logo} alt="logo_image" />
         </div>
         <ul className="menuItems">
-          <li className="menuItem">Movies</li>
-          <li className="menuItem">TV Shows</li>
+          <li className="menuItem" onClick={() => navigationHandler("movie")}>
+            Movies
+          </li>
+          <li className="menuItem" onClick={() => navigationHandler("tv")}>
+            TV Shows
+          </li>
           <li className="menuItem">
-            <HiOutlineSearch />
+            <HiOutlineSearch onClick={openSearch} />
           </li>
         </ul>
         {/*  MOBILE MENU  */}
