@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import "./style.scss";
 
-const SwitchTabs = () => {
+const SwitchTabs = ({ data, onTabChange }) => {
   return (
-    <div>SwitchTabs</div>
-  )
-}
+    <div className="switchingTabs">
+      <div className="tabItems"></div>
+    </div>
+  );
+};
 
-export default SwitchTabs
+export default SwitchTabs;
