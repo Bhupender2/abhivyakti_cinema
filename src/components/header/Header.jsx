@@ -23,7 +23,7 @@ const Header = () => {
   }, [location]);  // jab bhi page change hoga route chnage then this useEffect will run and hmara scroll starting pe aajaega phirse coz dekh agar pichle page mein humne scroll kiya toh next page mein bhi wahi se aaega jo hum nahi chahta h isliye location change hone pe hum starting pe aajaenge
 
   const controlNavbar = () => {
-    console.log(window.scrollY);
+    // console.log(window.scrollY); tells the amount of scroll we have done on y axis
     if (window.scrollY > 200) {
       if (window.scrollY > lastScrollY && !mobileMenu) {
         setShow("hide");
