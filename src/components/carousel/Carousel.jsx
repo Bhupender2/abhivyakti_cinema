@@ -15,7 +15,7 @@ import Genres from "../genres/Genres";
 
 import "./style.scss";
 
-const Carousel = ({ data, loading }) => {
+const Carousel = ({ data, loading, endpoint }) => {
   const carouselConatiner = useRef(); //as a ref uss dom element ko pass kardo jiska reference tum dena chahte ho (jiska dom manipulation tum karna chahte ho)
   const { url } = useSelector((state) => state.home);
   const navigate = useNavigate();
@@ -63,7 +63,9 @@ const Carousel = ({ data, loading }) => {
                 <div
                   key={item.id}
                   className="carouselItem"
-                  onClick={() => navigate(`/${item.media_type}/${item.id}`)}  // on Clicking we are going to different page where we are getting /movie/movie_id (its important) coz it will help us to retreive data of that movie_id in navigated page
+                  onClick={() =>
+                    navigate(`/${item.media_type || endpoint}/${item.id}`) //if there is no media type toh endpoint lelo same hi cheez h end point hoga (movie, tv)
+                  } // on Clicking we are going to different page where we are getting /movie/movie_id (its important) coz it will help us to retreive data of that movie_id in navigated page
                 >
                   <div className="posterBlock">
                     <Img src={posterUrl} />
