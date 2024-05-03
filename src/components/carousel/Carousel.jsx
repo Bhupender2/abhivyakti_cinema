@@ -32,6 +32,7 @@ const Carousel = ({ data, loading }) => {
   return (
     <div className="carousel">
       <ContentWrapper>
+      {title && <div className="carouselTitle">{title}</div>}
         <BsFillArrowLeftCircleFill
           className="carouselLeftNav arrow"
           onClick={() => navigation("left")}
@@ -51,11 +52,13 @@ const Carousel = ({ data, loading }) => {
                   <div className="posterBlock">
                     <Img src={posterUrl} />
                   </div>
-                  <span className="textBlock">{item.title || item.name}</span>{" "}
-                  {/* for movies it shows title but fir tv series it shows title */}
-                  <span className="date">
-                    {dayjs(item.release_Date).format("MMM D, YYYY")}
-                  </span>
+                  <div className="textBlock">
+                    <span className="title"> {item.title || item.name}</span>
+                    {/* for movies it shows title but fir tv series it shows title */}
+                    <span className="date">
+                      {dayjs(item.release_Date).format("MMM D, YYYY")}
+                    </span>
+                  </div>
                 </div>
               );
             })}
