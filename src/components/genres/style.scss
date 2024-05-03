@@ -1,0 +1,13 @@
+.genres{
+  display:flex;
+  gap:5px;
+  .genre{
+    background-color: var(--pink);
+    padding: 3px 5px ;
+    font-size: 12px;
+    border-radius: 4px;
+    color: white;
+    white-space: nowrap;
+  }
+}
+// we use white-space : no wrap so that the line word did not break (so we use no wrap)
