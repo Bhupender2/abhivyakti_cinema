@@ -8,7 +8,7 @@ const Trending = () => {
     <div className="carouselSection">
       <ContentWrapper>
         <span className="carouselTitle">Trending</span>
-        <SwitchTabs data={["day", "week"]} onTabChange={onTabChange} />
+        <SwitchTabs data={["Day", "Week"]} onTabChange={onTabChange} />
         {/*static nahi hoga dynamic hoga yeh jaise yeh h "month* daalenge toh vo bhi aana chahiye WE WILL MAKE THIS REUSABLE and iska control (onChange) vo iske parent component k pass rahega*/}
       </ContentWrapper>
     </div>
