@@ -3,6 +3,7 @@ import "./style.scss";
 import useFetch from "../../hooks/useFetch";
 import { useParams } from "react-router-dom";
 import DetailsBanner from "./detailsBanner/DetailsBanner";
+import Cast from "./cast/Cast";
 
 const Details = () => {
   const { mediaType, id } = useParams(); // we gave the params name mediaType and Id in app.js react router
@@ -10,10 +11,12 @@ const Details = () => {
   const { data: credits, loading: creditsLoading } = useFetch(
     `/${mediaType}/${id}/credits`
   ); // dusri api call karwani padegi coz same api k andar credits actor ka data nahi h (endpoint change kark hum ye cheez achieve karenge)
-
+  console.log(data);
   return (
     <div>
-      <DetailsBanner video={data?.results?.[0]} crew={credits?.crew}/> {/*home details banner mein bass ek pehli video hi pass karni h trailor ki*/}
+      <DetailsBanner video={data?.results?.[0]} crew={credits?.crew} />{" "}
+      {/*home details banner mein bass ek pehli video hi pass karni h trailor ki*/}
+      <Cast data={credits?.cast} loading={creditsLoading} />
     </div>
   );
 };
