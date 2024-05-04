@@ -11,6 +11,7 @@ import Genres from "../../../components/genres/Genres";
 import CircleRating from "../../../components/circleRating/CircleRating";
 import Img from "../../../components/lazyLoadImage/Img.jsx";
 import PosterFallback from "../../../assets/no-poster.png";
+import { PlayIcon } from "../PlayIcon";
 
 const DetailsBanner = ({ video, crew }) => {
   const { mediaType, id } = useParams(); // we gave the params name mediaType and Id in app.js react router
@@ -57,9 +58,18 @@ const DetailsBanner = ({ video, crew }) => {
                       }
                     </div>
                     <div className="subtitle">{data.tagline}</div>
-                    <Genres data={_genres} /> {/*we need only id here to show the genre because thats how i defined it*/}
+                    <Genres data={_genres} />{" "}
+                    {/*we need only id here to show the genre because thats how i defined it*/}
                     <div className="row">
                       <CircleRating rating={data.vote_average.toFixed(1)} />
+                      <div className="playbtn" onClick={() => {}}>
+                        <PlayIcon />
+                        <span className="text">Watch Trailer</span>
+                      </div>
+                    </div>
+                    <div className="overview">
+                      <div className="heading">Overview</div>
+                      <div className="description">{data.overview}</div>
                     </div>
                   </div>
                 </div>
