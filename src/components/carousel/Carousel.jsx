@@ -15,7 +15,7 @@ import Genres from "../genres/Genres";
 
 import "./style.scss";
 
-const Carousel = ({ data, loading, endpoint }) => {
+const Carousel = ({ data, loading, endpoint , title}) => {
   const carouselConatiner = useRef(); //as a ref uss dom element ko pass kardo jiska reference tum dena chahte ho (jiska dom manipulation tum karna chahte ho)
   const { url } = useSelector((state) => state.home);
   const navigate = useNavigate();
@@ -45,6 +45,7 @@ const Carousel = ({ data, loading, endpoint }) => {
   return (
     <div className="carousel">
       <ContentWrapper>
+      {title && <div className="carouselTitle">{title}</div>} {/*if we are sending title like recommendation and similar tab show hoga warna nahi*/}
         <BsFillArrowLeftCircleFill
           className="carouselLeftNav arrow"
           onClick={() => navigation("left")}
