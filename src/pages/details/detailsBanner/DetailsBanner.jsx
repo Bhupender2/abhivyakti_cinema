@@ -71,6 +71,33 @@ const DetailsBanner = ({ video, crew }) => {
                       <div className="heading">Overview</div>
                       <div className="description">{data.overview}</div>
                     </div>
+                    <div className="info">
+                      {data.status && (
+                        <div className="infoItem">
+                          <span className="text bold">Status: </span>
+                          {/* adding space here */}
+                          <span className="text">{data.status}</span>
+                        </div>
+                      )}
+                      {data.release_date && (
+                        <div className="infoItem">
+                          <span className="text bold">Release Date: </span>
+                          {/* adding space here */}
+                          <span className="text">
+                            {dayjs(data.release_date).format("MMM D, YYYY")}
+                          </span>
+                        </div>
+                      )}
+                      {data.runtime && (
+                        <div className="infoItem">
+                          <span className="text bold">Runtime: </span>
+                          {/* adding space here */}
+                          <span className="text">
+                            {toHoursAndMinutes(data.runtime)}
+                          </span>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </ContentWrapper>
