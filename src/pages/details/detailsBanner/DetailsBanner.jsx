@@ -17,6 +17,8 @@ const DetailsBanner = ({ video, crew }) => {
   const { data, loading } = useFetch(`/${mediaType}/${id}`);
 
   const { url } = useSelector((state) => state.home); //data extract karliya hmare store mein se using useSelector
+  const _genres = data?.genres?.map((g) => g.id); // we need id to do beacuse the way we created our genre component is passing id well get the genres like this {id:{}, id:{},id:{}}
+
   const toHoursAndMinutes = (totalMinutes) => {
     const hours = Math.floor(totalMinutes / 60);
     const minutes = totalMinutes % 60;
@@ -30,9 +32,38 @@ const DetailsBanner = ({ video, crew }) => {
           {!!data && ( // converting it to boolean without effecting its value using "!!"
             <React.Fragment>
               <div className="backdrop-img">
-                <Img src={url.backdrop + data.backdrop_path} />{" "}
+                <Img src={url.backdrop + data.backdrop_path} />-
                 {/*original path + image path*/}
               </div>
+              <div className="opacity-layer"></div>
+              <ContentWrapper>
+                <div className="content">
+                  <div className="left">
+                    {data.poster_path ? (
+                      <Img
+                        className="posterImg"
+                        src={url.backdrop + data.poster_path}
+                      />
+                    ) : (
+                      <Img className="posterImg" src={PosterFallback} />
+                    )}
+                  </div>
+                  <div className="right">
+                    <div className="title">
+                      {
+                        `${data?.name || data?.title} (${dayjs(
+                          data?.release_date
+                        ).format("YYYY")})` //depends if it is a movie or a tv series and we also format the date using dayjs(date.release_date).format("YYYY")
+                      }
+                    </div>
+                    <div className="subtitle">{data.tagline}</div>
+                    <Genres data={_genres} /> {/*we need only id here to show the genre because thats how i defined it*/}
+                    <div className="row">
+                      <CircleRating rating={data.vote_average.toFixed(1)} />
+                    </div>
+                  </div>
+                </div>
+              </ContentWrapper>
             </React.Fragment>
           )}
         </>
