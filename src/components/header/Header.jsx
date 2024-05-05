@@ -76,7 +76,7 @@ const Header = () => {
       {/* here we are using semantic tag for seo */}
       <ContentWrapper>
         <div className="logo">
-          <img src={logo} alt="logo_image" />
+          <img src={logo} alt="logo_image" onClick={()=>navigate("/")}/>
         </div>
         <ul className="menuItems">
           <li className="menuItem" onClick={() => navigationHandler("movie")}>
