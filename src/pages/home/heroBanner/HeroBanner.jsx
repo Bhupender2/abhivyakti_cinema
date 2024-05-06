@@ -5,6 +5,7 @@ import { useSelector } from "react-redux"; // to show the data store in redux st
 import useFetch from "../../../hooks/useFetch";
 import Img from "../../../components/lazyLoadImage/Img";
 import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
+import fallbackgroundimg from "../../../assets/fallbackgroundimg.jpg";
 
 const HeroBanner = () => {
   // on refreshing we call the api and set the background image on every refresh so we need a state(state mein jaake save hojaati h )
@@ -15,10 +16,12 @@ const HeroBanner = () => {
   const { data, loading } = useFetch("/movie/upcoming");
   useEffect(() => {
     // by adding url.backdrop we are getting the full image http path that we want
-    const bg =
-      url.backdrop +
-      data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
-    setBackground(bg);
+    if (url.backdrop && data?.results?.length > 0) {
+      const bg =
+        url.backdrop +
+        data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
+      setBackground(bg);
+    }
   }, [data]); // we'll use optional chaining taaki hmaari application break na ho jab tak optional chaining h aage ka code execute nahi hoga agar vo undefined hoga wahi se value return karlega
 
   const searchQueryHandler = (event) => {
@@ -31,7 +34,7 @@ const HeroBanner = () => {
     <div className="heroBanner">
       {!loading && (
         <div className="backdrop-img">
-          <Img src={background} />
+          <Img src={background || fallbackgroundimg} />
         </div>
       )}
       <div className="opacity-layer"></div>
@@ -49,11 +52,15 @@ const HeroBanner = () => {
               onChange={(e) => setQuery(e.target.value)}
               onKeyUp={searchQueryHandler}
             />
-            <button onClick={()=>{
-              if(query.length>0){
-                navigate(`/search/${query}`)
-              }
-            }}>Search</button>
+            <button
+              onClick={() => {
+                if (query.length > 0) {
+                  navigate(`/search/${query}`);
+                }
+              }}
+            >
+              Search
+            </button>
           </div>
         </div>
       </ContentWrapper>
