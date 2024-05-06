@@ -6,6 +6,7 @@ import "./style.scss";
 import { fetchDataFromApi } from "../../utils/api"; //not using costum hook we are using original one's .
 import ContentWrapper from "../../components/contentWrapper/ContentWrapper";
 import noResults from "../../assets/no-results.png";
+import Spinner from "../../components/spinner/Spinner";
 
 const SearchResult = () => {
   const [data, setData] = useState(null); //the search data
@@ -24,12 +25,25 @@ const SearchResult = () => {
       }
     );
   };
-
+console.log(data?.results?.length)
   useEffect(() => {
     fetchInitialData(); // it will be executed after the component is rendered
   }, [query]);
 
-  return <div className="searchResultsPage">SearchResult</div>;
+  return (
+    <div className="searchResultsPage">
+      {loading && <Spinner initial={true} />}
+      {!loading && (
+        <ContentWrapper>
+          {data?.results?.length > 0 ? (
+            <div>h</div>
+          ) : (
+            <span className="resultNotFound">Sorry, Results not found</span>
+          )}{" "}
+        </ContentWrapper>
+      )}
+    </div>
+  );
 };
 
 export default SearchResult;
