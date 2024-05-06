@@ -7,7 +7,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import "./style.scss";
 
 import ContentWrapper from "../contentWrapper/ContentWrapper";
-import logo from "../../assets/movix-logo.svg";
+import logo from "../../assets/newwhitehorizontallogo.png";
 
 const Header = () => {
   const [show, setShow] = useState("top"); // scrolling effect of the menu (top is a class in scss that we write on our own and it will change to hide and show on SCROLLING)
@@ -16,11 +16,11 @@ const Header = () => {
   const [query, setQuery] = useState(""); // here also the serach bar same as in the desktop version ( this will be used in mobile version)
   const [showSearch, setShowSearch] = useState(""); // on click it will show the search input in the mobile version
   const navigate = useNavigate();
-  const location = useLocation(); //whenever we change route it will be stored the current location in an object 
+  const location = useLocation(); //whenever we change route it will be stored the current location in an object
 
   useEffect(() => {
-    window.scrollTo(0, 0);  //x and y axis
-  }, [location]);  // jab bhi page change hoga route chnage then this useEffect will run and hmara scroll starting pe aajaega phirse coz dekh agar pichle page mein humne scroll kiya toh next page mein bhi wahi se aaega jo hum nahi chahta h isliye location change hone pe hum starting pe aajaenge
+    window.scrollTo(0, 0); //x and y axis
+  }, [location]); // jab bhi page change hoga route chnage then this useEffect will run and hmara scroll starting pe aajaega phirse coz dekh agar pichle page mein humne scroll kiya toh next page mein bhi wahi se aaega jo hum nahi chahta h isliye location change hone pe hum starting pe aajaenge
 
   const controlNavbar = () => {
     // console.log(window.scrollY); tells the amount of scroll we have done on y axis
@@ -76,7 +76,7 @@ const Header = () => {
       {/* here we are using semantic tag for seo */}
       <ContentWrapper>
         <div className="logo">
-          <img src={logo} alt="logo_image" onClick={()=>navigate("/")}/>
+          <img src={logo} alt="logo_image" onClick={() => navigate("/")} />
         </div>
         <ul className="menuItems">
           <li className="menuItem" onClick={() => navigationHandler("movie")}>
@@ -109,6 +109,18 @@ const Header = () => {
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyUp={searchQueryHandler}
               />
+              <button
+                onClick={() => {
+                if(query.length>0){
+                  navigate(`/search/${query}`)
+                }
+                setTimeout(()=>{
+                  setShowSearch(false)
+                },1000)
+                }}
+              >
+                Search
+              </button>
               <VscChromeClose onClick={() => setShowSearch(false)} />
             </div>
           </ContentWrapper>
