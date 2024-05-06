@@ -45,6 +45,7 @@ const SearchResult = () => {
 
   console.log(data?.results?.length);
   useEffect(() => {
+    setPageNum(1) // jab bhi query change hogi toh page num phirsecast 1 kardo coz jab chnage karahe h query toh vo ussi page se dikha raha tha jahan pe pehle chora tha for ex 15 toh query change pe results hi nahi aarahe the
     fetchInitialData(); // it will be executed after the component is rendered
   }, [query]);
 
@@ -56,8 +57,8 @@ const SearchResult = () => {
           {data?.results?.length > 0 ? (
             <>
               <div className="pageTitle">
-                {`${data.total_results} search ${
-                  data.total_results > 1 ? "results" : "result"
+                {`${data?.total_results} search ${
+                  data?.total_results > 1 ? "results" : "result"
                 } of ${query}`}
               </div>
               <InfiniteScroll
