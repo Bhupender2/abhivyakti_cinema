@@ -45,7 +45,7 @@ const SearchResult = () => {
 
   console.log(data?.results?.length);
   useEffect(() => {
-    setPageNum(1) // jab bhi query change hogi toh page num phirsecast 1 kardo coz jab chnage karahe h query toh vo ussi page se dikha raha tha jahan pe pehle chora tha for ex 15 toh query change pe results hi nahi aarahe the
+    setPageNum(1); // jab bhi query change hogi toh page num phirsecast 1 kardo coz jab chnage karahe h query toh vo ussi page se dikha raha tha jahan pe pehle chora tha for ex 15 toh query change pe results hi nahi aarahe the
     fetchInitialData(); // it will be executed after the component is rendered
   }, [query]);
 
@@ -65,7 +65,7 @@ const SearchResult = () => {
                 className="content"
                 dataLength={data?.results?.length || []}
                 next={fetchNextPageData} //jaise hi neeche aaega isko call karega vo
-                hasMore={pageNum<= data?.total_pages}
+                hasMore={pageNum <= data?.total_pages}
                 loader={<Spinner />}
               >
                 {data?.results?.map((item, index) => {
@@ -77,7 +77,7 @@ const SearchResult = () => {
               </InfiniteScroll>
             </>
           ) : (
-            <span className="resultNotFound">Sorry, Results not found</span>
+            <div className="resultNotFound"> <span className="modification_letter">Oops !</span> Results not found</div>
           )}
         </ContentWrapper>
       )}
