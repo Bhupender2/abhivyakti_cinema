@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  FaFacebookF,
+  FaGithub ,
   FaInstagram,
   FaTwitter,
   FaLinkedin,
@@ -31,7 +31,7 @@ const Footer = () => {
         </div>
         <div className="socialIcons">
           <span className="icon">
-            <FaFacebookF />
+            <FaGithub />
           </span>
           <span className="icon">
             <FaInstagram />
