@@ -9,7 +9,7 @@ import noResults from "../../assets/no-results.png";
 import Spinner from "../../components/spinner/Spinner";
 
 const SearchResult = () => {
-  const [data, setData] = useState(null); //the search data
+  const [data, setData] = useState(null); //the search data and we need to update the data for the infinite scroll beacause on api call it will show only 20 movies
 
   const [pageNum, setPageNum] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -25,7 +25,24 @@ const SearchResult = () => {
       }
     );
   };
-console.log(data?.results?.length)
+
+  const fetchNextPageData = () => {
+    fetchDataFromApi(`/search/multi?query=${query}&page=${pageNum}`).then(
+      (res) => {
+        if (data?.results) {
+          setData({
+            ...data,
+            results: [...data?.results, ...res?.results], //updating the data by adding more data into previous ones
+          });
+        } else {
+          setData(res); //if null h toh normally hi data pass kardo
+        }
+        setPageNum((prev) => prev + 1); // pehle page 1 ka data mila fetchInitialData se milega phir page 2 ka data fetchNextPage se milega or phir hum uska page increase kardenge 3 ho jaaega ese kark badhta jaaega badhta jaaegaa..
+      }
+    );
+  };
+
+  console.log(data?.results?.length);
   useEffect(() => {
     fetchInitialData(); // it will be executed after the component is rendered
   }, [query]);
@@ -36,10 +53,16 @@ console.log(data?.results?.length)
       {!loading && (
         <ContentWrapper>
           {data?.results?.length > 0 ? (
-            <div>h</div>
+            <>
+              <div className="pageTitle">
+                {`${data.total_results} search ${
+                  data.total_results > 1 ? "results" : "result"
+                } of ${query}`}
+              </div>
+            </>
           ) : (
             <span className="resultNotFound">Sorry, Results not found</span>
-          )}{" "}
+          )}
         </ContentWrapper>
       )}
     </div>
