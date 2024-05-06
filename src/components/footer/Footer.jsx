@@ -1,10 +1,6 @@
 import React from "react";
-import {
-  FaGithub ,
-  FaInstagram,
-  FaTwitter,
-  FaLinkedin,
-} from "react-icons/fa";
+import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
+import { SiGmail } from "react-icons/si";
 
 import ContentWrapper from "../contentWrapper/ContentWrapper";
 
@@ -31,16 +27,34 @@ const Footer = () => {
         </div>
         <div className="socialIcons">
           <span className="icon">
-            <FaGithub />
+            <a
+              href="https://github.com/Bhupender2"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "inherit"}}
+            >
+              <FaGithub />
+            </a>
           </span>
           <span className="icon">
-            <FaInstagram />
+            <a href="mailto:b.mehtaa2021@gmail.com" target="_blank" rel="noopener noreferrer" style={{ color: "inherit"}}>
+              <SiGmail />
+            </a>
           </span>
           <span className="icon">
-            <FaTwitter />
+            <a href="https://twitter.com/Bhupender_Codes" target="_blank" rel="noopener noreferrer" style={{ color: "inherit"}}>
+              <FaTwitter />
+            </a>
           </span>
           <span className="icon">
-            <FaLinkedin />
+            <a
+              href="https://www.linkedin.com/in/bhupender-mehta-661331226/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "inherit"}}
+            >
+              <FaLinkedin />
+            </a>
           </span>
         </div>
       </ContentWrapper>
