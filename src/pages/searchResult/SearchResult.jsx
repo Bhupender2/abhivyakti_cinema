@@ -7,6 +7,7 @@ import { fetchDataFromApi } from "../../utils/api"; //not using costum hook we a
 import ContentWrapper from "../../components/contentWrapper/ContentWrapper";
 import noResults from "../../assets/no-results.png";
 import Spinner from "../../components/spinner/Spinner";
+import MovieCard from "../../components/movieCard/MovieCard";
 
 const SearchResult = () => {
   const [data, setData] = useState(null); //the search data and we need to update the data for the infinite scroll beacause on api call it will show only 20 movies
@@ -59,6 +60,20 @@ const SearchResult = () => {
                   data.total_results > 1 ? "results" : "result"
                 } of ${query}`}
               </div>
+              <InfiniteScroll
+                className="content"
+                dataLength={data?.results?.length || []}
+                next={fetchNextPageData} //jaise hi neeche aaega isko call karega vo
+                hasMore={pageNum<= data?.total_pages}
+                loader={<Spinner />}
+              >
+                {data?.results?.map((item, index) => {
+                  if (item.media_Type === "person") return;
+                  return (
+                    <MovieCard key={item.id} data={item} fromSearch={true} /> //giving key item.id instead of item
+                  );
+                })}
+              </InfiniteScroll>
             </>
           ) : (
             <span className="resultNotFound">Sorry, Results not found</span>
