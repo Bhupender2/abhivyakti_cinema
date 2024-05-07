@@ -35,6 +35,9 @@ Welcome to Abhivyakti Cinema! This ReactJS website offers a comprehensive browsi
 
 Check out the live demo [here](https://abhivyakti-cinema.vercel.app/).
 
+## Menu
+![Abhivyakti Cinema Demo](https://github.com/Bhupender2/abhivyakti_cinema/blob/main/src/assets/demo2.png)
+
 ## Clone and Run Locally
 
 To clone this repository and run the project locally, follow these steps:
