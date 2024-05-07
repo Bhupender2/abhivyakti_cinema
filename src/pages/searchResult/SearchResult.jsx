@@ -8,6 +8,7 @@ import ContentWrapper from "../../components/contentWrapper/ContentWrapper";
 import noResults from "../../assets/no-results.png";
 import Spinner from "../../components/spinner/Spinner";
 import MovieCard from "../../components/movieCard/MovieCard";
+import ResultsNotFound from "../../components/resultsNotFound/ResultsNotFound"
 
 const SearchResult = () => {
   const [data, setData] = useState(null); //the search data and we need to update the data for the infinite scroll beacause on api call it will show only 20 movies
@@ -77,7 +78,7 @@ const SearchResult = () => {
               </InfiniteScroll>
             </>
           ) : (
-            <div className="resultNotFound"> <span className="modification_letter">Oops !</span> Results not found</div>
+           <ResultsNotFound/>
           )}
         </ContentWrapper>
       )}
