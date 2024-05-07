@@ -33,7 +33,7 @@ Welcome to Abhivyakti Cinema! This ReactJS website offers a comprehensive browsi
 
 ## Live Demo
 
-Check out the live demo [here](https://example.com).
+Check out the live demo [here](https://abhivyakti-cinema.vercel.app/).
 
 ## Clone and Run Locally
 
