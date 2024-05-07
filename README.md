@@ -2,7 +2,7 @@
 
 # Abhivyakti Cinema
 
-![Abhivyakti Cinema Demo]([https://github.com/Bhupender2/abhivyakti_cinema/blob/main/src/assets/demo1.png])
+![Abhivyakti Cinema Demo](https://github.com/Bhupender2/abhivyakti_cinema/blob/main/src/assets/demo1.png)
 
 Welcome to Abhivyakti Cinema! This ReactJS website offers a comprehensive browsing experience for movies and TV shows, including personalized recommendations (built with ❤️ for movie buffs).
 
