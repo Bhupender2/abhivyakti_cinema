@@ -2,7 +2,7 @@
 
 # Abhivyakti Cinema
 
-![Abhivyakti Cinema Demo](demo_image.png)
+![Abhivyakti Cinema Demo](https://github.com/Bhupender2/abhivyakti_cinema/blob/main/src/assets/demo1.png)
 
 Welcome to Abhivyakti Cinema! This ReactJS website offers a comprehensive browsing experience for movies and TV shows, including personalized recommendations (built with ❤️ for movie buffs).
 
@@ -34,6 +34,9 @@ Welcome to Abhivyakti Cinema! This ReactJS website offers a comprehensive browsi
 ## Live Demo
 
 Check out the live demo [here](https://abhivyakti-cinema.vercel.app/).
+
+## Menu
+![Abhivyakti Cinema Demo](https://github.com/Bhupender2/abhivyakti_cinema/blob/main/src/assets/demo2.png)
 
 ## Clone and Run Locally
 
